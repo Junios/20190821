@@ -1,31 +1,45 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-
-//데이터타입*  테이터타입형 포인터 변수 선언
-//int* int형 포인터 변수 선언(int형 변수의 주소를 기억 공간)
-//*변수 -> 포인터 변수가지고 있는 위치(메모리주소)의 값을 찾아서 사용
-//변수 * 변수 = 곱하기
-
-template<typename T>
-void swap(T* pa, T* pb)
+void PrintArray(int* a, int n)
 {
-	T temp = *pa;
-	*pa = *pb;
-	*pb = temp;
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
 }
-
 
 int main()
 {
-	int a = 3;
-	int b = 4;
-	swap<int>(&a, &b);
+	int n = 20;
+	//scanf("%d", &n);
 
-	float c = 3.4f;
-	float d = 6.7f;
-	swap<float>(&c, &d);
+	int* c = (int*)malloc(n * sizeof(int));
+	//float* b = (float*)malloc(n * sizeof(float));
 
-	printf("%f %f", c, d);
+	for (int i = 0; i < n; i++)
+	{
+		c[i] = i + 1;
+	}
+
+	//for (int i = 0; i < n; i++)
+	//{
+	//	printf("%d ", a[i]);
+	//}
+
+	//free(a);
+	free(c);
+
+	int a[10];
+	for (int i = 0; i < 10; i++)
+	{
+		a[i] = i + 1;
+	}
+
+	PrintArray(a, 10);
+	PrintArray(c, 20);
+
+
 
 	return 0;
 }
