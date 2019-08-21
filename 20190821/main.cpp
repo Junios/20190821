@@ -1,81 +1,31 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
-#define N			10000
-#define MAXNUMBER	10000
 
-int ChoiceNumber(int Max)
+//데이터타입*  테이터타입형 포인터 변수 선언
+//int* int형 포인터 변수 선언(int형 변수의 주소를 기억 공간)
+//*변수 -> 포인터 변수가지고 있는 위치(메모리주소)의 값을 찾아서 사용
+//변수 * 변수 = 곱하기
+
+template<typename T>
+void swap(T* pa, T* pb)
 {
-	return rand() % Max + 1;
+	T temp = *pa;
+	*pa = *pb;
+	*pb = temp;
 }
+
 
 int main()
 {
-	int Numbers[N];
+	int a = 3;
+	int b = 4;
+	swap<int>(&a, &b);
 
-	srand(time(nullptr));
+	float c = 3.4f;
+	float d = 6.7f;
+	swap<float>(&c, &d);
 
-	//자루에 공 만들기
-	int RandomNumber[MAXNUMBER];
-	for (int i = 0; i < MAXNUMBER; i++)
-	{
-		RandomNumber[i] = i + 1;
-	}
+	printf("%f %f", c, d);
 
-	//공 섞는거
-	for (int i = 0; i < MAXNUMBER; i++)
-	{
-		int first = rand() % MAXNUMBER;
-		int second = rand() % MAXNUMBER;
-		int Temp = RandomNumber[first];
-		RandomNumber[first] = RandomNumber[second];
-		RandomNumber[second] = Temp;
-	}
-
-	for (int i = 0; i < N; i++)
-	{
-		Numbers[i] = RandomNumber[i];
-	}
-
-	for (int i = 0; i < N; i++)
-	{
-		printf("%d ", Numbers[i]);
-	}
-
-
-	/*
-		//종이에 숫자 적기
-		Numbers[0] = ChoiceNumber(MAXNUMNER);
-		for (int i = 1; i < N; i++)
-		{
-			// 새 숫자를 뽑아서 이전에 뽑은 숫자인지 비교, 있는거면 다시 뽑기
-			int j = 0;
-			while (true)
-			{
-				bool bCan =  true;
-				int NewNumber = ChoiceNumber(MAXNUMNER);
-
-				for (int j = 0; j < i; j++)
-				{
-					if (Numbers[j] == NewNumber)
-					{
-						bCan = false;
-					}
-				}
-
-				if (bCan == true)
-				{
-					Numbers[i] = NewNumber;
-					break;
-				}
-			}
-		}
-
-		for (int i = 0; i < N; i++)
-		{
-			printf("%d ", Numbers[i]);
-		}
-	*/
 	return 0;
 }
